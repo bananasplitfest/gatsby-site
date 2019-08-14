@@ -19,13 +19,7 @@ module.exports = {
         apiURL: process.env.DEPLOY_URL
           ? "https://nameless-gorge-16856.herokuapp.com"
           : "http://localhost:1337",
-        contentTypes: [
-          `activity`,
-          `location`,
-          `sponsor`,
-          `tag`,
-          `user`,
-        ],
+        contentTypes: [`activity`, `location`, `sponsor`, `tag`, `user`],
         queryLimit: 1000,
       },
     },
