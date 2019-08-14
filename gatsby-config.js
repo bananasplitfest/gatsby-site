@@ -23,8 +23,7 @@ module.exports = {
           'activity',
           'location',
           'sponsor',
-          'tag',
-          'user'
+          'tag'
         ],
         queryLimit: 1000,
       },
