@@ -1,6 +1,3 @@
-console.log("-----------------DEPLOY URL----------------------")
-console.log(process.env.DEPLOY_URL);
-console.log("-----------------DEPLOY URL----------------------")
 module.exports = {
   siteMetadata: {
     title: 'Great American Banana Split Celebration',
@@ -23,20 +20,6 @@ module.exports = {
           ? "https://nameless-gorge-16856.herokuapp.com"
           : "http://localhost:1337",
         contentTypes: [`activity`, `location`, `sponsor`, `tag`, `user`],
-        queryLimit: 1000,
-      },
-    },
-    {
-      resolve: 'gatsby-source-strapi',
-      options: {
-        apiURL: 'http://localhost:1337',
-        contentTypes: [ // List of the Content Types you want to be able to request from Gatsby.
-          'activity',
-          'location',
-          'sponsor',
-          'tag',
-          'user'
-        ],
         queryLimit: 1000,
       },
     },
