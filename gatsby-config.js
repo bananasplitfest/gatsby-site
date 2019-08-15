@@ -1,4 +1,6 @@
+console.log("-----------------DEPLOY URL----------------------")
 console.log(process.env.DEPLOY_URL);
+console.log("-----------------DEPLOY URL----------------------")
 module.exports = {
   siteMetadata: {
     title: 'Great American Banana Split Celebration',
