@@ -76,10 +76,15 @@ export const query = graphql`
           slug
         }
         gallery {
-            id
-            name
-            url
-          }
+          id
+          name
+          url
+        }
+        location {
+          id
+          name
+          slug
+        }
     }
   }
 `

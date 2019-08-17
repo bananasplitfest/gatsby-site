@@ -14,8 +14,7 @@ const IndexPage = ({ data }) => (
             <Link to={`/activity/${document.node.slug}`}>{document.node.name}</Link>
           </h2>
           <p>{document.node.description}</p>
-          <p>{//document.node.location.name}
-          </p>
+          <p>{document.node.location.name}</p>
         </li>
       ))}
     </ul>
