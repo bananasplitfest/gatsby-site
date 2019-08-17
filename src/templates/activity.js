@@ -1,6 +1,7 @@
 import React from 'react'
 import { graphql } from 'gatsby'
 import Layout from '../components/layout'
+import ReactMarkdown from "react-markdown"  
 import moment from 'moment'
 import "../../node_modules/react-image-gallery/styles/css/image-gallery.css";
 //import ImageGallery from 'react-image-gallery';
@@ -22,12 +23,14 @@ const images = [
 
 const ActivityTemplate = ({ data }) => (
   <Layout>
-    {data.strapiActivity.gallery.forEach(document => {
+    {/*
+    data.strapiActivity.gallery.forEach(document => {
         images.push({
             original: 'http://localhost:1337/' + document.url,
             thumbnail: 'http://localhost:1337/' + document.url
         })
-    })}
+    })
+    */}
     {console.log(data.strapiActivity)}
     { /*
     <ImageGallery items={images} /> */ }
@@ -42,7 +45,10 @@ const ActivityTemplate = ({ data }) => (
         {data.strapiActivity.suffix}
       </h6>
     </div>
-    <p>{data.strapiActivity.description}</p>
+    <ReactMarkdown  
+      source={document.node.content}
+      transformImageUri={uri => uri.startsWith('http') ? uri : `${process.env.IMAGE_BASE_URL}${uri}`}
+    />
     <ul style={{listStyleType: 'none', paddingLeft: 0, marginLeft: 0}}>
       {data.strapiActivity.schedule.timeblocks.map(document => (
         <li key={document.id}>
