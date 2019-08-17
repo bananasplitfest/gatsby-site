@@ -58,33 +58,33 @@ export default ActivityTemplate
 export const query = graphql`
   query ActivityTemplate($id: String!) {
     strapiActivity(id: {eq: $id}) {
+      id
+      name
+      prefix
+      suffix
+      description
+      schedule {
+        timeblocks {
+          id
+          starttime
+          endtime
+        }
+      }
+      sponsorsLogo {
         id
         name
-        prefix
-        suffix
-        description
-        schedule {
-          timeblocks {
-            id
-            starttime
-            endtime
-          }
-        }
-        sponsorsLogo {
-          id
-          name
-          slug
-        }
-        gallery {
-          id
-          name
-          url
-        }
-        location {
-          id
-          name
-          slug
-        }
+        slug
+      }
+      gallery {
+        id
+        name
+        url
+      }
+      location {
+        id
+        name
+        slug
+      }
     }
   }
 `
