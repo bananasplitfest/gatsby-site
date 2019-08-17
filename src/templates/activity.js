@@ -46,7 +46,7 @@ const ActivityTemplate = ({ data }) => (
       </h6>
     </div>
     <ReactMarkdown  
-      source={document.node.content}
+      source={data.strapiActivity.content}
       transformImageUri={uri => uri.startsWith('http') ? uri : `${process.env.IMAGE_BASE_URL}${uri}`}
     />
     <ul style={{listStyleType: 'none', paddingLeft: 0, marginLeft: 0}}>
