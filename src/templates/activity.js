@@ -3,7 +3,7 @@ import { graphql } from 'gatsby'
 import Layout from '../components/layout'
 import moment from 'moment'
 import "../../node_modules/react-image-gallery/styles/css/image-gallery.css";
-import ImageGallery from 'react-image-gallery';
+//import ImageGallery from 'react-image-gallery';
 
 const images = [
     {
@@ -29,7 +29,8 @@ const ActivityTemplate = ({ data }) => (
         })
     })}
     {console.log(data.strapiActivity)}
-    <ImageGallery items={images} />
+    { /*
+    <ImageGallery items={images} /> */ }
     <div style={{marginBottom: `1.45rem`}}>
       <h6 style={{marginBottom: `0`}}>
         {data.strapiActivity.prefix}
@@ -42,8 +43,8 @@ const ActivityTemplate = ({ data }) => (
       </h6>
     </div>
     <p>{data.strapiActivity.description}</p>
-    <ul style={{listStyleType: 'none'}}>
-      {data.strapiActivity.schedule.map(document => (
+    <ul style={{listStyleType: 'none', paddingLeft: 0, marginLeft: 0}}>
+      {data.strapiActivity.schedule.timeblocks.map(document => (
         <li key={document.id}>
           {moment(document.starttime).format('dddd, MMMM D, h:mm a')} - {moment(document.endtime).format('h:mm a')}
         </li>
@@ -63,9 +64,11 @@ export const query = graphql`
         suffix
         description
         schedule {
-          id
-          starttime
-          endtime
+          timeblocks {
+            id
+            starttime
+            endtime
+          }
         }
         sponsorsLogo {
           id

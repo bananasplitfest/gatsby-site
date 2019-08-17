@@ -32,8 +32,11 @@ query IndexQuery {
         name
         slug
         schedule {
-          endtime
-          starttime
+          timeblocks {
+            id
+            starttime
+            endtime
+          }
         }
         location {
           id
