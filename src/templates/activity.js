@@ -6,21 +6,6 @@ import moment from 'moment'
 import "../../node_modules/react-image-gallery/styles/css/image-gallery.css";
 //import ImageGallery from 'react-image-gallery';
 
-const images = [
-    {
-      original: 'http://lorempixel.com/1000/600/nature/1/',
-      thumbnail: 'http://lorempixel.com/250/150/nature/1/',
-    },
-    {
-      original: 'http://lorempixel.com/1000/600/nature/2/',
-      thumbnail: 'http://lorempixel.com/250/150/nature/2/'
-    },
-    {
-      original: 'http://lorempixel.com/1000/600/nature/3/',
-      thumbnail: 'http://lorempixel.com/250/150/nature/3/'
-    }
-  ]
-
 const ActivityTemplate = ({ data }) => (
   <Layout>
     {/*
@@ -45,9 +30,9 @@ const ActivityTemplate = ({ data }) => (
         {data.strapiActivity.suffix}
       </h6>
     </div>
+    <hr />
     <ReactMarkdown  
-      source={data.strapiActivity.content}
-      transformImageUri={uri => uri.startsWith('http') ? uri : `${process.env.IMAGE_BASE_URL}${uri}`}
+      source={data.strapiActivity.description}
     />
     <ul style={{listStyleType: 'none', paddingLeft: 0, marginLeft: 0}}>
       {data.strapiActivity.schedule.timeblocks.map(document => (
