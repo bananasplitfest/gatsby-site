@@ -1,0 +1,94 @@
+.prefix, .name {
+    margin-bottom: 0;
+}
+
+.suffix {
+    margin-top: 0;
+}
+
+.title {
+    grid-area: title;
+    margin-bottom: 0;
+}
+
+.meta {
+    grid-area: meta;
+}
+
+.gallery {
+    grid-area: gallery;
+    background: forestgreen;
+}
+
+.description {
+    grid-area: description;
+}
+
+.links {
+    grid-area: links;
+    background: tomato;
+}
+
+.sponsors {
+    grid-area: sponsors;
+    background: violet;
+}
+
+.meta {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 300;
+}
+
+.meta .icon {
+    color: rgb(150, 150, 150);
+}
+
+.meta .weekday {
+    text-transform: uppercase;
+}
+
+.meta .time {
+    font-variant: small-caps;
+}
+
+.meta .tags {
+    text-transform: lowercase;
+}
+
+.meta .grid-container {
+    display: grid;
+    grid-template-columns: 30px auto;
+    grid-column-gap: 5px;
+    grid-row-gap: .3625rem;
+}
+
+/* For mobile phones: */
+.activity {
+    display: grid;
+    grid-template-areas:
+      'title'
+      'meta'
+      'links'
+      'description'
+      'gallery'
+      'sponsors';
+  }
+  
+@media only screen and (min-width: 600px) {
+    /* For tablets: */
+    .activity {
+    grid-template-columns: 33% 67%;
+    grid-template-areas:
+        'title title'
+        'sidebar main';
+    grid-gap: .725rem;
+    }
+
+    .sidebar {
+        grid-area: sidebar;
+    }
+    
+    .main {
+        grid-area: main;
+    }
+}

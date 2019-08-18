@@ -1,6 +1,6 @@
 module.exports = {
   siteMetadata: {
-    title: 'Great American Banana Split Celebration',
+    title: 'Banana Split Celebration',
     description: 'One Sweet Weekend',
     author: 'GLLV Chamber of Commerce'
   },

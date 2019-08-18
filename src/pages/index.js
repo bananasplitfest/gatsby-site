@@ -7,13 +7,13 @@ const IndexPage = ({ data }) => (
     <h1>Hi people</h1>
     <p>Welcome to your new Gatsby site.</p>
     <p>Now go build something great.</p>
-    <ul>
+    <pre>{JSON.stringify(data)}</pre>
+    <ul style={{listStyleType: 'none', paddingLeft: 0, marginLeft: 0}}>
       {data.allStrapiActivity.edges.map(document => (
         <li key={document.node.id}>
-          <h2>
+          <h2 style={{marginBottom: 0}}>
             <Link to={`/activity/${document.node.slug}`}>{document.node.name}</Link>
           </h2>
-          <p>{document.node.description}</p>
           <p>{document.node.location.name}</p>
         </li>
       ))}
@@ -31,6 +31,9 @@ query IndexQuery {
         id
         name
         slug
+        gallery {
+          id
+        }
         schedule {
           timeblocks {
             id

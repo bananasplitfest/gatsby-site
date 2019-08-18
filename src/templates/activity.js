@@ -1,46 +1,97 @@
 import React from 'react'
-import { graphql } from 'gatsby'
+import { Link, graphql } from 'gatsby'
 import Layout from '../components/layout'
 import ReactMarkdown from "react-markdown"  
 import moment from 'moment'
-import "../../node_modules/react-image-gallery/styles/css/image-gallery.css";
-//import ImageGallery from 'react-image-gallery';
+import "../components/activity.css"
+import "../../node_modules/@fortawesome/fontawesome-free/css/all.min.css"
 
 const ActivityTemplate = ({ data }) => (
   <Layout>
-    {/*
-    data.strapiActivity.gallery.forEach(document => {
-        images.push({
-            original: 'http://localhost:1337/' + document.url,
-            thumbnail: 'http://localhost:1337/' + document.url
-        })
-    })
-    */}
-    {console.log(data.strapiActivity)}
-    { /*
-    <ImageGallery items={images} /> */ }
-    <div style={{marginBottom: `1.45rem`}}>
-      <h6 style={{marginBottom: `0`}}>
-        {data.strapiActivity.prefix}
-      </h6>
-      <h1 style={{marginBottom: `0`}}>
-        {data.strapiActivity.name}
-      </h1>
-      <h6 style={{marginBottom: `0`}}>
-        {data.strapiActivity.suffix}
-      </h6>
+    <div class="activity">
+      <div class="title">
+        {data.strapiActivity.prefix ? <h6 class="prefix">{data.strapiActivity.prefix}</h6> : ''}
+        <h1 class="name">{data.strapiActivity.name}</h1>
+        {data.strapiActivity.suffix ? <h6 class="suffix">{data.strapiActivity.suffix}</h6> : ''}
+      </div>
+      <div class="sidebar">
+        <div class="meta">
+          <div class="grid-container">
+            <div class="icon">
+              <i class="fas fa-map-marked"></i>
+            </div>
+            <div class="location">
+              {data.strapiActivity.location.name}
+            </div>
+
+            <div class="icon">
+              <i class="far fa-clock"></i>
+            </div>
+            <div class="schedule">
+              <ul style={{listStyleType: 'none', paddingLeft: 0, marginLeft: 0, marginBottom: 0}}>
+                {data.strapiActivity.schedule.timeblocks.map(document => (
+                  <li key={document.id} style={{marginBottom: 0}}>
+                    <span class="weekday">
+                      {moment(document.starttime).format('dddd')}
+                    </span> <span class="date">
+                      {moment(document.starttime).format('MMMM D')}
+                    </span> from <span class="time">
+                      {moment(document.starttime).format('h')}
+                      {moment(document.starttime).format('mm') === "00"
+                        ? moment(document.starttime).format('a')
+                        : moment(document.starttime).format(':mma')
+                      }
+                    </span> to <span class="time">
+                    {console.log(moment(document.endtime).format('m'))}
+                    {console.log(typeof moment(document.endtime).format('m'))}
+                    {moment(document.endtime).format('h')}
+                    {moment(document.endtime).format('mm') === "00"
+                      ? moment(document.endtime).format('a')
+                      : moment(document.endtime).format(':mma')
+                    }
+                    </span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div class="icon">
+              <i class="fas fa-hashtag"></i>
+            </div>
+            <div class="tags">
+              <ul style={{listStyleType: 'none', paddingLeft: 0, marginLeft: 0}}>
+                {data.strapiActivity.tags.map(document => (
+                  <li key={document.id} style={{display: 'inline', paddingRight: '.3625rem'}}>
+                    <Link to={`/tag/${document.slug}`}>{document.name}</Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+          </div>
+
+        
+        </div>
+        <div class="links">
+          <ul>
+            <li>Link 1</li>
+            <li>Link2</li>
+          </ul>
+        </div>      
+      </div>
+
+      <div class="main">
+        <div class="gallery">Gallery Here!</div>
+        <div class="description">
+          <ReactMarkdown  
+            source={data.strapiActivity.description}
+          />
+        </div>
+        <div class="sponsors">
+          Sponsor
+        </div>
+      </div>
     </div>
-    <hr />
-    <ReactMarkdown  
-      source={data.strapiActivity.description}
-    />
-    <ul style={{listStyleType: 'none', paddingLeft: 0, marginLeft: 0}}>
-      {data.strapiActivity.schedule.timeblocks.map(document => (
-        <li key={document.id}>
-          {moment(document.starttime).format('dddd, MMMM D, h:mm a')} - {moment(document.endtime).format('h:mm a')}
-        </li>
-      ))}
-    </ul>
   </Layout>
 )
 
@@ -75,6 +126,11 @@ export const query = graphql`
         id
         name
         slug
+      }
+      tags {
+        name
+        slug
+        id
       }
     }
   }
